@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 function Navbar(props) {
@@ -6,13 +7,13 @@ function Navbar(props) {
         <div className="nav-container">
             <ul className="nav-container__list">
                 <li className="nav-container__item">
-                    <a href="/#" className="nav-container__item-link">Works</a>
+                    <Link to="/" className="nav__mobile-item-link">Home</Link>
                 </li>
                 <li className="nav-container__item">
-                    <a href="blog.html" className="nav-container__item-link">Blog</a>
+                    <Link to="/posts" className="nav__mobile-item-link">Posts</Link>
                 </li>
                 <li className="nav-container__item">
-                    <a href="/#" className="nav-container__item-link">Contact</a>
+                    <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
                 </li>
             </ul>
             <label htmlFor="nav-mobile-input" className="nav-bar__btn"><i className="fas fa-bars"></i></label>
@@ -22,13 +23,13 @@ function Navbar(props) {
             <nav className="nav__mobile">
                 <ul className="nav__mobile-list">
                     <li className="nav__mobile-item">
-                        <a href="/#" className="nav__mobile-item-link">Works</a>
+                        <Link to="/" className="nav__mobile-item-link">Home</Link>
                     </li>
                     <li className="nav__mobile-item">
-                        <a href="/#" className="nav__mobile-item-link">Blog</a>
+                        <Link to="/posts" className="nav__mobile-item-link">Posts</Link>
                     </li>
                     <li className="nav__mobile-item">
-                        <a href="/#" className="nav__mobile-item-link">Contact</a>
+                        <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
                     </li>
                 </ul>
                 <label htmlFor="nav-mobile-input" className="nav__btn-close"><i className="fas fa-times"></i></label>

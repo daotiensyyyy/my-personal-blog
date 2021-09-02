@@ -1,8 +1,36 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore, persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'reduxjs-toolkit-persist'
+import storage from 'reduxjs-toolkit-persist/lib/storage' // defaults to localStorage for web
 import blogReducer from '../features/Blog/blogSlice';
 
-export const store = configureStore({
-  reducer: {
-    blog: blogReducer,
-  },
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['blog']
+}
+
+const reducers = combineReducers({
+  blog: blogReducer,
 });
+
+const _persistedReducer = persistReducer(persistConfig, reducers);
+
+export const store = configureStore({
+  reducer: _persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
