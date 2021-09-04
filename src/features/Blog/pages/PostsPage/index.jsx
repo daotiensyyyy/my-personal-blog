@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 function PostsPage(props) {
@@ -8,6 +9,7 @@ function PostsPage(props) {
                 <div className="blog-container">
                     <div className="blog-container__wrap">
                         <div className="blog-container__heading">Blog</div>
+                        <Link to="/admin">Create a new post</Link>
                         <div className="col l-12 m-12 c-12 blog-container__info">
                             <div className="blog-container__info-title">UI interactions of the week</div>
                             <div className="blog-container__info-date">12 Feb 2019</div>

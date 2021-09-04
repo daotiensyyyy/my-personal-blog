@@ -15,6 +15,11 @@ function Navbar(props) {
                 <li className="nav-container__item">
                     <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
                 </li>
+                {localStorage.getItem('accessToken') ?
+                    <li className="nav-container__item">
+                        <Link to="/admin" className="nav__mobile-item-link"><i className="far fa-user"></i>, Sy</Link>
+                    </li>
+                    : ''}
             </ul>
             <label htmlFor="nav-mobile-input" className="nav-bar__btn"><i className="fas fa-bars"></i></label>
 
@@ -31,6 +36,11 @@ function Navbar(props) {
                     <li className="nav__mobile-item">
                         <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
                     </li>
+                    {localStorage.getItem('accessToken') ?
+                        <li className="nav__mobile-item">
+                            <Link to="/admin" className="nav__mobile-item-link"><i className="far fa-user"></i>, Sy</Link>
+                        </li>
+                        : ''}
                 </ul>
                 <label htmlFor="nav-mobile-input" className="nav__btn-close"><i className="fas fa-times"></i></label>
             </nav>

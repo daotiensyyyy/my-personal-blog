@@ -1,14 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Action from '../../../../components/Action';
 import Banner from '../../../../components/Banner';
+import { fetchAllPosts } from '../../blogSlice';
 import PostList from '../../components/PostList';
 
 
 function HomePage(props) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchAllPosts());
+    }, [])
     const blogState = useSelector(state => state.blog);
     const { posts } = blogState;
     // console.log('posts', posts);
+
     return (
         <>
             <div className="main">

@@ -172,6 +172,7 @@ html{
     max-width: 100%;
     background-color: #fff;
     transform: translateX(100%);
+    z-index: 1;
 }
 
 .nav__mobile-list{
