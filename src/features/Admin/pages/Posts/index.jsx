@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import * as Yup from 'yup';
-import { addPost } from '../../../Blog/blogSlice';
+import { createPost } from '../../../Blog/blogSlice';
 import './Posts.scss';
 
 function NewPost(props) {
@@ -43,7 +43,7 @@ function NewPost(props) {
                             validationSchema={validationSchema}
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
-                                    dispatch(addPost(values));
+                                    dispatch(createPost(values));
                                     history.push('/');
                                     setSubmitting(false);
                                 }, 1000);

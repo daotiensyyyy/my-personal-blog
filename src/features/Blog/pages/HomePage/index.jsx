@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Action from '../../../../components/Action';
 import Banner from '../../../../components/Banner';
 import { fetchAllPosts } from '../../blogSlice';
-import PostList from '../../components/PostList';
+import PostList from './components/PostList';
 
 
 function HomePage(props) {
     const dispatch = useDispatch();
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
     useEffect(() => {
         dispatch(fetchAllPosts());
     }, [])

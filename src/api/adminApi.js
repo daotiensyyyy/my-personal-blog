@@ -9,6 +9,17 @@ const adminApi = {
             data,
         })
     },
+
+    createPost(data) {
+        return axios({
+            url: `${domain.adminUrl}/create-post`,
+            method: 'POST',
+            data,
+            headers: {
+                "x-access-token": localStorage.getItem("accessToken"),
+            },
+        })
+    }
 }
 
 export default adminApi;

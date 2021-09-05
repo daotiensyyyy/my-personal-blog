@@ -23,7 +23,7 @@ function Login(props) {
     const handleSubmit = async (values) => {
         const signInResult = await dispatch(login(values));
         unwrapResult(signInResult);
-        history.push('/admin');
+        history.push('/');
     }
 
     return (

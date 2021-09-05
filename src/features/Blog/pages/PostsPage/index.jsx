@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { fetchAllPosts } from '../../blogSlice';
+import PostList from './components/PostList';
+import './PostPage.scss';
 
 function PostsPage(props) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchAllPosts());
+    }, []);
+    const blogState = useSelector(state => state.blog);
+    const { posts } = blogState;
+    // console.log(posts);
     return (
         <div className="grid wide container">
             <div className="row">
@@ -10,18 +23,12 @@ function PostsPage(props) {
                     <div className="blog-container__wrap">
                         <div className="blog-container__heading">Blog</div>
                         <Link to="/admin">Create a new post</Link>
-                        <div className="col l-12 m-12 c-12 blog-container__info">
-                            <div className="blog-container__info-title">UI interactions of the week</div>
-                            <div className="blog-container__info-date">12 Feb 2019</div>
-                            <div className="blog-container__info-text">Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit.
-                                Alias
-                                explicabo beatae error commodi omnis porro deleniti ipsum asperiores enim blanditiis
-                                dicta,
-                                reprehenderit, nemo nihil dolorum voluptatem iure similique rem nobis?</div>
-                        </div>
+                        <PostList postList={posts} />
                     </div>
                 </div>
+            </div>
+            <div className="back-btn">
+                <Link to="/"><i className="fas fa-long-arrow-alt-left"></i></Link>
             </div>
         </div>
     );

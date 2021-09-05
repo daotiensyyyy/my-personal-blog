@@ -1,10 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import adminApi from '../../api/adminApi';
 import userApi from '../../api/userApi';
 
 export const fetchAllPosts = createAsyncThunk(
     'users/fetchAllPosts',
     async () => {
         const response = await userApi.getAllPosts();
+        return response.data;
+    }
+)
+
+export const createPost = createAsyncThunk(
+    'admin/newPost',
+    async (value) => {
+        const response = await adminApi.createPost(value);
         return response.data;
     }
 )
@@ -28,17 +37,20 @@ export const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
-        addPost: (state, action) => {
-            state.posts.push(action.payload);
-        },
+        // addPost: (state, action) => {
+        //     state.posts.push(action.payload);
+        // },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
             state.posts = action.payload;
+        });
+        builder.addCase(createPost.fulfilled, (state, action) => {
+            state.posts.push(action.payload);
         })
     },
 });
 
-const { reducer, actions } = blogSlice;
-export const { addPost } = actions;
-export default reducer;
+// const { reducer, actions } = blogSlice;
+// export const { addPost } = actions;
+export default blogSlice.reducer;
