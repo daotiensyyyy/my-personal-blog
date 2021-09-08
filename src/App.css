@@ -184,13 +184,16 @@ html{
 /*Footer*/
 .footer-container{
     display: flex;
-    justify-content: center;
-    padding: 100px;
+    justify-content: space-between;
+    margin: 100px 36px;
 }
 .footer-icon__link{
     margin: 16px;
     color:#21243D;
     font-size: 1.5rem;
+}
+.footer__social{
+    float: right;
 }
 
 .nav-bar__btn{

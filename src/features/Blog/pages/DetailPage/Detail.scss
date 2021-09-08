@@ -1,0 +1,21 @@
+.post-detail{
+    .post-detail__title{
+        font-size: 1.875rem;
+        color: #21243D;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    .post-detail__field{
+        font-style: italic;
+        font-size: 1rem;
+    }
+    .post-detail__date{
+        font-style: italic;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .post-detail__content{
+        font-size: 1.25rem;
+        text-align: justify;
+    }
+}

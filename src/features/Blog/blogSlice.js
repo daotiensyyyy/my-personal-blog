@@ -10,6 +10,14 @@ export const fetchAllPosts = createAsyncThunk(
     }
 )
 
+export const fetchPostBySlug = createAsyncThunk(
+    'users/fetchPostBySlug',
+    async (value) => {
+        const response = await userApi.getPostBySlug(value);
+        return response.data;
+    }
+)
+
 export const createPost = createAsyncThunk(
     'admin/newPost',
     async (value) => {
@@ -29,6 +37,7 @@ const initialState = {
         //     content: 'lorem Ipsum is simply dummy text of the printing and typesetting industry  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, sed!  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, sed!',
         // },
     ],
+    detail: {},
 };
 
 
@@ -47,6 +56,9 @@ export const blogSlice = createSlice({
         });
         builder.addCase(createPost.fulfilled, (state, action) => {
             state.posts.push(action.payload);
+        })
+        builder.addCase(fetchPostBySlug.fulfilled, (state, action) => {
+            state.detail = action.payload[0];
         })
     },
 });

@@ -1,16 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { logout } from '../../features/Admin/authSlice';
 
 
 function Navbar(props) {
     const dispatch = useDispatch();
-    const history = useHistory();
     const handleLogout = () => {
         dispatch(logout());
-        history.push('/login');
     }
     return (
         <div className="nav-container">
@@ -21,9 +18,6 @@ function Navbar(props) {
                 <li className="nav-container__item">
                     <Link to="/posts" className="nav__mobile-item-link">Posts</Link>
                 </li>
-                <li className="nav-container__item">
-                    <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
-                </li>
                 {localStorage.getItem('accessToken') ?
                     <li className="nav-container__item admin">
                         <Link to="/#" className="nav__mobile-item-link"><i className="far fa-user"></i>, Sy</Link>
@@ -33,7 +27,7 @@ function Navbar(props) {
                                 <Link to="/admin" className="menu-dropdown__link">Go to admin page</Link>
                             </li>
                             <li className="menu-dropdown__item">
-                                <Link to="/#" onClick={handleLogout} className="menu-dropdown__link">Log out</Link>
+                                <a href="/login" onClick={handleLogout} className="menu-dropdown__link">Log out</a>
                             </li>
                         </ul>
                     </li>
@@ -50,9 +44,6 @@ function Navbar(props) {
                     </li>
                     <li className="nav__mobile-item">
                         <Link to="/posts" className="nav__mobile-item-link">Posts</Link>
-                    </li>
-                    <li className="nav__mobile-item">
-                        <Link to="/contact" className="nav__mobile-item-link">Contact</Link>
                     </li>
                     {localStorage.getItem('accessToken') ?
                         <>

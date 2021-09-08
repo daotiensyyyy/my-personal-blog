@@ -10,6 +10,13 @@ const userApi = {
         });
     },
 
+    getPostBySlug(value) {
+        return axios({
+            url: `${domain.baseUrl}/post/${value}`,
+            method: 'GET',
+        })
+    }
+
 }
 
 export default userApi;

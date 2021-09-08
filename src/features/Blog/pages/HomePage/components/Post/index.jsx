@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 
 Post.propTypes = {
     post: PropTypes.object,
+    onHandleDetailClick: PropTypes.func,
 };
 
 Post.defaultProps = {
-    post: { }
+    post: {},
+    onHandleDetailClick: null,
 }
 
 function Post(props) {
-    const { post } = props;
+    const { post, onHandleDetailClick } = props;
     // console.log('post', post);
+    const handleDetailClick = () => {
+        if (onHandleDetailClick) {
+            onHandleDetailClick(post);
+        }
+    }
     return (
         <>
-            <div className="col l-4 m-6 c-12 ">
+            <div className="col l-4 m-6 c-12 " onClick={handleDetailClick}>
                 <div className="post__container">
                     <div className="post__container-title">{post.title}
                     </div>

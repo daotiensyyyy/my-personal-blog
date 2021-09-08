@@ -15,7 +15,7 @@ import authReducer from '../features/Admin/authSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['blog']
+  whitelist: ['blog', 'detail']
 }
 
 const reducers = combineReducers({
