@@ -22,6 +22,7 @@ export const createPost = createAsyncThunk(
     'admin/newPost',
     async (value) => {
         const response = await adminApi.createPost(value);
+
         return response.data;
     }
 )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../features/Admin/authSlice';
 
@@ -9,6 +9,9 @@ function Navbar(props) {
     const handleLogout = () => {
         dispatch(logout());
     }
+    const authState = useSelector(state => state.auth);
+    const { isLogin } = authState;
+    // console.log(isLogin);
     return (
         <div className="nav-container">
             <ul className="nav-container__list">
@@ -18,16 +21,16 @@ function Navbar(props) {
                 <li className="nav-container__item">
                     <Link to="/posts" className="nav__mobile-item-link">Posts</Link>
                 </li>
-                {localStorage.getItem('accessToken') ?
+                {isLogin === true ?
                     <li className="nav-container__item admin">
-                        <Link to="/#" className="nav__mobile-item-link"><i className="far fa-user"></i>, Sy</Link>
+                        <Link to="/#" className="nav__mobile-item-link">Welcome, Sy</Link>
 
                         <ul className="menu-dropdown__list">
                             <li className="menu-dropdown__item">
                                 <Link to="/admin" className="menu-dropdown__link">Go to admin page</Link>
                             </li>
                             <li className="menu-dropdown__item">
-                                <a href="/login" onClick={handleLogout} className="menu-dropdown__link">Log out</a>
+                                <Link to="/login" onClick={handleLogout} className="menu-dropdown__link">Log out</Link>
                             </li>
                         </ul>
                     </li>

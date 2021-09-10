@@ -7,6 +7,8 @@ import PostList from './components/PostList';
 import './PostPage.scss';
 
 function PostsPage(props) {
+    const authState = useSelector(state => state.auth);
+    const { isLogin } = authState;
     const history = useHistory();
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -24,11 +26,11 @@ function PostsPage(props) {
     }
     return (
         <div className="grid wide container">
-            <div className="row">
-                <div className="blog-container">
-                    <div className="blog-container__wrap">
-                        <div className="blog-container__heading">Blog</div>
-                        <Link to="/admin">Create a new post</Link>
+            <div className="blog-container">
+                <div className="blog-container__wrap">
+                    <div className="blog-container__heading">Blog</div>
+                    {isLogin === true ? <Link to="/admin">Create a new post</Link> : ''}
+                    <div className="row">
                         <PostList postList={posts} onHandleClick={handleClick} />
                     </div>
                 </div>

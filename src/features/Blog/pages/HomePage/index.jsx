@@ -5,6 +5,7 @@ import Action from '../../../../components/Action';
 import Banner from '../../../../components/Banner';
 import { fetchAllPosts } from '../../blogSlice';
 import PostList from './components/PostList';
+import './HomePage.scss';
 
 function HomePage(props) {
     const dispatch = useDispatch();
