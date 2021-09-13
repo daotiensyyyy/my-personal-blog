@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import { createPost } from '../../../Blog/blogSlice';
 import './Posts.scss';
 
+import { Editor, EditorState } from 'draft-js';
+
 function NewPost(props) {
     const id = Math.random().toString(36).substr(2, 9);
     let today = new Date();

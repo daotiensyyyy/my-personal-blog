@@ -32,6 +32,7 @@ function PostsPage(props) {
                     {isLogin === true ? <Link to="/admin">Create a new post</Link> : ''}
                     <div className="row">
                         <PostList postList={posts} onHandleClick={handleClick} />
+
                     </div>
                 </div>
             </div>

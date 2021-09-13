@@ -8,7 +8,7 @@ export const fetchAllPosts = createAsyncThunk(
         const response = await userApi.getAllPosts();
         return response.data;
     }
-)
+);
 
 export const fetchPostBySlug = createAsyncThunk(
     'users/fetchPostBySlug',
@@ -16,16 +16,23 @@ export const fetchPostBySlug = createAsyncThunk(
         const response = await userApi.getPostBySlug(value);
         return response.data;
     }
-)
+);
 
 export const createPost = createAsyncThunk(
     'admin/newPost',
     async (value) => {
         const response = await adminApi.createPost(value);
-
         return response.data;
     }
-)
+);
+
+export const deletePost = createAsyncThunk(
+    'admin/deletePost',
+    async (value) => {
+        const response = await adminApi.deletePost(value);
+        return response.data;
+    }
+);
 
 const initialState = {
     posts: [
@@ -57,10 +64,14 @@ export const blogSlice = createSlice({
         });
         builder.addCase(createPost.fulfilled, (state, action) => {
             state.posts.push(action.payload);
-        })
+        });
         builder.addCase(fetchPostBySlug.fulfilled, (state, action) => {
             state.detail = action.payload[0];
-        })
+        });
+        builder.addCase(deletePost.fulfilled, (state, action) => {
+            const removePostId = action.payload._id;
+            state.posts = state.posts.filter(post => post._id !== removePostId);
+        });
     },
 });
 

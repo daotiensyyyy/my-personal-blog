@@ -20,7 +20,7 @@ function PostList(props) {
     const pageVisited = pageNumber * postsPerPage;
     const displayPosts = postList.slice(0).reverse()
         .slice(pageVisited, pageVisited + postsPerPage)
-        .map(post => {
+        .map((post) => {
             return (
                 <div className="col l-12 m-12 c-12 blog-container__info" key={post._id}>
                     <Post post={post}

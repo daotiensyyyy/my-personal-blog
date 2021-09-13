@@ -24,9 +24,14 @@ const adminApi = {
             url: `${domain.adminUrl}/create-post`,
             method: 'POST',
             data,
-            // headers: {
-            //     Authorization: 'Bearer ' + localStorage.getItem("accessToken"),
-            // },
+            withCredentials: true,
+        })
+    },
+
+    deletePost(value) {
+        return axios({
+            url: `${domain.adminUrl}/post/${value}/delete`,
+            method: 'DELETE',
             withCredentials: true,
         })
     }
